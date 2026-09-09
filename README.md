@@ -31,9 +31,9 @@ O objetivo é **completar a rodada 10** sem perder as três vidas disponíveis, 
 
 O jogo está publicado no GitHub Pages e pode ser jogado diretamente no navegador:
 
-**https://SEU-USUARIO.github.io/caca-cores/**
+**https://joao-givisiez.github.io/caca-cores/**
 
-> Substitua `SEU-USUARIO` e o nome do repositório pelo endereço real após publicar o projeto.
+> O link fica ativo após o repositório ser publicado no GitHub Pages.
 
 ## Regras do Jogo
 
@@ -64,7 +64,7 @@ O jogo não possui dependências e não exige instalação. Há duas formas de e
 **1. Abrir diretamente o arquivo**
 
 ```bash
-git clone https://github.com/SEU-USUARIO/caca-cores.git
+git clone https://github.com/joao-givisiez/caca-cores.git
 cd caca-cores
 ```
 

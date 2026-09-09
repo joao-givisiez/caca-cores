@@ -1,19 +1,15 @@
-/* ==========================================================
-   Caça-Cores - lógica do jogo
-   Jogo de memória: o computador acende uma sequência de cores
-   e o jogador precisa repeti-la na mesma ordem.
-   ========================================================== */
+// Caça-Cores - lógica do jogo
+// Jogo de memória: o computador acende uma sequência de cores
+// e o jogador precisa repeti-la na mesma ordem.
 
-/* ---------- Constantes ---------- */
-
+// Constantes
 const TOTAL_CORES = 4;
 const RODADA_FINAL = 10;   // completar esta rodada vence a partida
 const VIDAS_INICIAIS = 3;
 const CHAVE_HISTORICO = "cacaCores.historico";
 const CHAVE_RECORDE = "cacaCores.recorde";
 
-/* ---------- Estado da partida ---------- */
-
+// Estado da partida
 let sequencia = [];        // sequência gerada pelo computador
 let posicaoJogador = 0;    // índice que o jogador deve acertar agora
 let rodada = 0;
@@ -22,8 +18,7 @@ let vidas = VIDAS_INICIAIS;
 let emPartida = false;     // partida iniciada e ainda não encerrada
 let aceitandoCliques = false;
 
-/* ---------- Elementos do DOM ---------- */
-
+// Elementos do DOM
 const elRodada = document.getElementById("rodada");
 const elPontos = document.getElementById("pontos");
 const elRecorde = document.getElementById("recorde");
@@ -36,9 +31,7 @@ const btnReiniciar = document.getElementById("btnReiniciar");
 const btnLimpar = document.getElementById("btnLimpar");
 const botoesCor = document.querySelectorAll(".cor");
 
-/* ==========================================================
-   Funções de apoio
-   ========================================================== */
+// Funções de apoio
 
 // Exibe uma mensagem para o jogador, com destaque opcional.
 function mostrarMensagem(texto, tipo) {
@@ -78,9 +71,7 @@ function acenderCor(indice) {
     }, velocidade() * 0.6);
 }
 
-/* ==========================================================
-   Fluxo da partida
-   ========================================================== */
+// Fluxo da partida
 
 // Sorteia uma nova cor, avança a rodada e reproduz a sequência.
 function proximaRodada() {
@@ -208,9 +199,7 @@ function reiniciarJogo() {
     mostrarMensagem("Jogo reiniciado. Pressione Iniciar para jogar novamente.");
 }
 
-/* ==========================================================
-   Recorde e histórico (armazenados no navegador)
-   ========================================================== */
+// Recorde e histórico (armazenados no navegador)
 
 function carregarRecorde() {
     const salvo = localStorage.getItem(CHAVE_RECORDE);
@@ -284,10 +273,7 @@ function limparHistorico() {
     mostrarMensagem("Histórico apagado.");
 }
 
-/* ==========================================================
-   Eventos
-   ========================================================== */
-
+// Eventos
 botoesCor.forEach(function (botao) {
     botao.addEventListener("click", function () {
         jogar(Number(botao.dataset.cor));
@@ -306,8 +292,7 @@ document.addEventListener("keydown", function (evento) {
     }
 });
 
-/* ---------- Inicialização ---------- */
-
+// Inicialização
 carregarRecorde();
 exibirHistorico();
 atualizarPlacar();
