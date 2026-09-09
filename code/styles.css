@@ -1,0 +1,304 @@
+/* ==========================================================
+   Caça-Cores - folha de estilos
+   ========================================================== */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #1B1F3B;
+    color: #F2F2F2;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* ---------- Cabeçalho e rodapé ---------- */
+
+header {
+    background-color: #12162E;
+    text-align: center;
+    padding: 20px 10px;
+    border-bottom: 3px solid #FFD166;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.4em;
+    letter-spacing: 2px;
+    color: #FFD166;
+}
+
+header p {
+    margin: 8px 0 0;
+    color: #C9CCE0;
+}
+
+footer {
+    margin-top: auto;
+    background-color: #12162E;
+    text-align: center;
+    padding: 12px;
+    font-size: 0.85em;
+    color: #C9CCE0;
+    border-top: 3px solid #FFD166;
+}
+
+/* ---------- Layout principal ---------- */
+
+main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 30px;
+    padding: 30px 20px;
+}
+
+.painel,
+.lateral {
+    background-color: #262B54;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+}
+
+.painel {
+    width: 380px;
+    text-align: center;
+}
+
+.lateral {
+    width: 340px;
+}
+
+/* ---------- Placar ---------- */
+
+.placar {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.placar-item {
+    flex: 1;
+    background-color: #1B1F3B;
+    border-radius: 8px;
+    padding: 8px 4px;
+}
+
+.placar-rotulo {
+    display: block;
+    font-size: 0.75em;
+    text-transform: uppercase;
+    color: #9AA0C4;
+}
+
+.placar-item strong {
+    font-size: 1.5em;
+    color: #FFD166;
+}
+
+/* ---------- Mensagens ---------- */
+
+.mensagem {
+    min-height: 42px;
+    margin: 0 0 16px;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: #1B1F3B;
+    font-size: 1em;
+}
+
+.mensagem.acerto {
+    color: #6BE58A;
+}
+
+.mensagem.erro {
+    color: #FF6B6B;
+}
+
+.mensagem.vitoria {
+    color: #FFD166;
+    font-weight: bold;
+}
+
+/* ---------- Tabuleiro de cores ---------- */
+
+.tabuleiro {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin: 0 auto 20px;
+    width: 300px;
+}
+
+.cor {
+    height: 130px;
+    border: 4px solid #12162E;
+    border-radius: 10px;
+    cursor: pointer;
+    opacity: 0.45;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.cor:disabled {
+    cursor: not-allowed;
+}
+
+.cor:not(:disabled):hover {
+    opacity: 0.75;
+}
+
+.cor.aceso {
+    opacity: 1;
+    transform: scale(1.06);
+    box-shadow: 0 0 22px currentColor;
+}
+
+#cor-0 {
+    background-color: #2ECC71;
+    color: #2ECC71;
+}
+
+#cor-1 {
+    background-color: #E74C3C;
+    color: #E74C3C;
+}
+
+#cor-2 {
+    background-color: #F1C40F;
+    color: #F1C40F;
+}
+
+#cor-3 {
+    background-color: #3498DB;
+    color: #3498DB;
+}
+
+/* ---------- Botões e controles ---------- */
+
+.controles {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 14px;
+}
+
+.botao {
+    background-color: #FFD166;
+    color: #12162E;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 22px;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.botao:hover:not(:disabled) {
+    background-color: #FFE099;
+}
+
+.botao:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+.botao-secundario {
+    background-color: #4A5085;
+    color: #F2F2F2;
+}
+
+.botao-secundario:hover:not(:disabled) {
+    background-color: #5D64A3;
+}
+
+.dificuldade {
+    font-size: 0.9em;
+    color: #C9CCE0;
+}
+
+.dificuldade select {
+    background-color: #1B1F3B;
+    color: #F2F2F2;
+    border: 1px solid #4A5085;
+    border-radius: 6px;
+    padding: 5px 8px;
+}
+
+/* ---------- Regras e histórico ---------- */
+
+.lateral h2 {
+    color: #FFD166;
+    font-size: 1.2em;
+    margin-top: 0;
+    border-bottom: 1px solid #4A5085;
+    padding-bottom: 6px;
+}
+
+.regras ol {
+    padding-left: 20px;
+    line-height: 1.6;
+    font-size: 0.92em;
+}
+
+.historico {
+    margin-top: 24px;
+}
+
+.historico ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 12px;
+    max-height: 190px;
+    overflow-y: auto;
+}
+
+.historico li {
+    background-color: #1B1F3B;
+    border-left: 4px solid #4A5085;
+    border-radius: 6px;
+    padding: 8px 10px;
+    margin-bottom: 6px;
+    font-size: 0.88em;
+}
+
+.historico li.venceu {
+    border-left-color: #6BE58A;
+}
+
+.historico li.perdeu {
+    border-left-color: #FF6B6B;
+}
+
+.historico li.vazio {
+    border-left-color: #4A5085;
+    color: #9AA0C4;
+    font-style: italic;
+}
+
+/* ---------- Responsividade ---------- */
+
+@media (max-width: 800px) {
+
+    .painel,
+    .lateral {
+        width: 100%;
+        max-width: 380px;
+    }
+
+    .tabuleiro {
+        width: 100%;
+    }
+
+    .cor {
+        height: 110px;
+    }
+}

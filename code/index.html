@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Caça-Cores</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header>
+        <h1>Caça-Cores</h1>
+        <p>Memorize a sequência de cores e repita sem errar!</p>
+    </header>
+
+    <main>
+        <section class="painel">
+            <article class="placar">
+                <div class="placar-item">
+                    <span class="placar-rotulo">Rodada</span>
+                    <strong id="rodada">0</strong>
+                </div>
+                <div class="placar-item">
+                    <span class="placar-rotulo">Pontos</span>
+                    <strong id="pontos">0</strong>
+                </div>
+                <div class="placar-item">
+                    <span class="placar-rotulo">Recorde</span>
+                    <strong id="recorde">0</strong>
+                </div>
+                <div class="placar-item">
+                    <span class="placar-rotulo">Vidas</span>
+                    <strong id="vidas">3</strong>
+                </div>
+            </article>
+
+            <p id="mensagem" class="mensagem">Pressione <em>Iniciar</em> para come&ccedil;ar a partida.</p>
+
+            <div id="tabuleiro" class="tabuleiro">
+                <button class="cor" id="cor-0" type="button" data-cor="0" disabled aria-label="Cor verde"></button>
+                <button class="cor" id="cor-1" type="button" data-cor="1" disabled aria-label="Cor vermelha"></button>
+                <button class="cor" id="cor-2" type="button" data-cor="2" disabled aria-label="Cor amarela"></button>
+                <button class="cor" id="cor-3" type="button" data-cor="3" disabled aria-label="Cor azul"></button>
+            </div>
+
+            <div class="controles">
+                <button id="btnIniciar" type="button" class="botao">Iniciar</button>
+                <button id="btnReiniciar" type="button" class="botao botao-secundario">Reiniciar</button>
+            </div>
+
+            <label class="dificuldade">
+                Dificuldade:
+                <select id="dificuldade">
+                    <option value="700">F&aacute;cil</option>
+                    <option value="450" selected>M&eacute;dio</option>
+                    <option value="260">Dif&iacute;cil</option>
+                </select>
+            </label>
+        </section>
+
+        <section class="lateral">
+            <article class="regras">
+                <h2>Como jogar</h2>
+                <ol>
+                    <li>Clique em <strong>Iniciar</strong> para come&ccedil;ar a partida.</li>
+                    <li>Observe a sequ&ecirc;ncia de cores que o jogo acende.</li>
+                    <li>Repita a sequ&ecirc;ncia clicando nos bot&otilde;es na mesma ordem.</li>
+                    <li>A cada acerto, a sequ&ecirc;ncia ganha uma cor a mais.</li>
+                    <li>Cada erro custa uma vida; ao perder as <strong>3 vidas</strong>, a partida termina.</li>
+                    <li>Vence quem completar a <strong>rodada 10</strong> sem perder todas as vidas.</li>
+                </ol>
+            </article>
+
+            <article class="historico">
+                <h2>Hist&oacute;rico de partidas</h2>
+                <ul id="listaHistorico">
+                    <li class="vazio">Nenhuma partida registrada.</li>
+                </ul>
+                <button id="btnLimpar" type="button" class="botao botao-secundario">Limpar hist&oacute;rico</button>
+            </article>
+        </section>
+    </main>
+
+    <footer>
+        <p>GAC116 - Programa&ccedil;&atilde;o Web | UFLA | Licen&ccedil;a MIT</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
