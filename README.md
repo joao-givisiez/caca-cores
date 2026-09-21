@@ -44,6 +44,7 @@ O jogo está publicado no GitHub Pages e pode ser jogado diretamente no navegado
 7. A partida termina em **vitória** quando o jogador completa a **rodada 10**.
 8. O botão **Reiniciar** interrompe a partida atual a qualquer momento e devolve o jogo ao estado inicial.
 9. A velocidade de exibição das cores pode ser ajustada no seletor de **dificuldade** (Fácil, Médio ou Difícil).
+10. O botão **Limpar histórico** apaga o registro das partidas anteriores salvo no navegador.
 
 ## Pontuação
 
@@ -80,7 +81,7 @@ Depois, acesse `http://localhost:8000` no navegador.
 ## Tecnologias Utilizadas
 
 * **HTML5** — estruturação semântica da página (`header`, `main`, `section`, `article`, `footer`).
-* **CSS3** — estilização, layout com *Flexbox* e *Grid*, transições, animações e responsividade.
+* **CSS3** — estilização, layout com *Flexbox* e *Grid*, transições e responsividade.
 * **JavaScript (puro)** — manipulação do DOM, tratamento de eventos, controle do estado da partida, temporizadores (`setTimeout` / `setInterval`) e persistência de dados com `localStorage`.
 
 Nenhuma biblioteca ou framework externo foi utilizado.
