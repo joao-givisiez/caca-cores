@@ -1,24 +1,17 @@
-// Caça-Cores - lógica do jogo
-// Jogo de memória: o computador acende uma sequência de cores
-// e o jogador precisa repeti-la na mesma ordem.
-
-// Constantes
 const TOTAL_CORES = 4;
-const RODADA_FINAL = 10;   // completar esta rodada vence a partida
+const RODADA_FINAL = 10;
 const VIDAS_INICIAIS = 3;
 const CHAVE_HISTORICO = "cacaCores.historico";
 const CHAVE_RECORDE = "cacaCores.recorde";
 
-// Estado da partida
-let sequencia = [];        // sequência gerada pelo computador
-let posicaoJogador = 0;    // índice que o jogador deve acertar agora
+let sequencia = [];
+let posicaoJogador = 0;
 let rodada = 0;
 let pontos = 0;
 let vidas = VIDAS_INICIAIS;
-let emPartida = false;     // partida iniciada e ainda não encerrada
+let emPartida = false;
 let aceitandoCliques = false;
 
-// Elementos do DOM
 const elRodada = document.getElementById("rodada");
 const elPontos = document.getElementById("pontos");
 const elRecorde = document.getElementById("recorde");
@@ -31,9 +24,6 @@ const btnReiniciar = document.getElementById("btnReiniciar");
 const btnLimpar = document.getElementById("btnLimpar");
 const botoesCor = document.querySelectorAll(".cor");
 
-// Funções de apoio
-
-// Exibe uma mensagem para o jogador, com destaque opcional.
 function mostrarMensagem(texto, tipo) {
     elMensagem.textContent = texto;
     elMensagem.className = "mensagem";
@@ -42,14 +32,12 @@ function mostrarMensagem(texto, tipo) {
     }
 }
 
-// Atualiza os números do placar na tela.
 function atualizarPlacar() {
     elRodada.textContent = rodada;
     elPontos.textContent = pontos;
     elVidas.textContent = vidas;
 }
 
-// Habilita ou desabilita os botões coloridos.
 function liberarCores(liberar) {
     aceitandoCliques = liberar;
     botoesCor.forEach(function (botao) {
@@ -57,12 +45,10 @@ function liberarCores(liberar) {
     });
 }
 
-// Tempo de exibição de cada cor, conforme a dificuldade escolhida.
 function velocidade() {
     return Number(elDificuldade.value);
 }
 
-// Acende uma cor por um curto período.
 function acenderCor(indice) {
     const botao = document.getElementById("cor-" + indice);
     botao.classList.add("aceso");
@@ -71,9 +57,6 @@ function acenderCor(indice) {
     }, velocidade() * 0.6);
 }
 
-// Fluxo da partida
-
-// Sorteia uma nova cor, avança a rodada e reproduz a sequência.
 function proximaRodada() {
     sequencia.push(Math.floor(Math.random() * TOTAL_CORES));
     posicaoJogador = 0;
@@ -83,7 +66,6 @@ function proximaRodada() {
     reproduzirSequencia();
 }
 
-// Mostra a sequência atual, uma cor por vez.
 function reproduzirSequencia() {
     liberarCores(false);
     let i = 0;
@@ -100,7 +82,6 @@ function reproduzirSequencia() {
     }, velocidade());
 }
 
-// Trata o clique do jogador em uma das cores.
 function jogar(indice) {
     if (!aceitandoCliques) {
         return;
@@ -109,30 +90,26 @@ function jogar(indice) {
     acenderCor(indice);
 
     if (indice === sequencia[posicaoJogador]) {
-        // Acertou a cor da vez.
         posicaoJogador = posicaoJogador + 1;
         pontos = pontos + 10;
         atualizarPlacar();
 
         if (posicaoJogador === sequencia.length) {
-            // Completou a sequência da rodada.
             liberarCores(false);
             if (rodada >= RODADA_FINAL) {
                 encerrarPartida(true);
             } else {
-                pontos = pontos + rodada * 5;   // bônus por rodada concluída
+                pontos = pontos + rodada * 5;
                 atualizarPlacar();
                 mostrarMensagem("Sequência correta! Prepare-se para a próxima rodada.", "acerto");
                 setTimeout(proximaRodada, 1200);
             }
         }
     } else {
-        // Errou a cor da vez.
         errar();
     }
 }
 
-// Desconta uma vida e decide se a partida continua.
 function errar() {
     liberarCores(false);
     vidas = vidas - 1;
@@ -150,14 +127,13 @@ function errar() {
     }
 }
 
-// Finaliza a partida por vitória ou derrota.
 function encerrarPartida(venceu) {
     emPartida = false;
     liberarCores(false);
     btnIniciar.disabled = false;
 
     if (venceu) {
-        pontos = pontos + vidas * 50;   // bônus pelas vidas restantes
+        pontos = pontos + vidas * 50;
         atualizarPlacar();
         mostrarMensagem("Parabéns! Você venceu com " + pontos + " pontos!", "vitoria");
     } else {
@@ -168,7 +144,6 @@ function encerrarPartida(venceu) {
     registrarHistorico(venceu);
 }
 
-// Prepara todos os valores para uma nova partida.
 function iniciarPartida() {
     sequencia = [];
     posicaoJogador = 0;
@@ -182,7 +157,6 @@ function iniciarPartida() {
     setTimeout(proximaRodada, 900);
 }
 
-// Interrompe a partida atual e volta ao estado inicial.
 function reiniciarJogo() {
     if (emPartida) {
         registrarHistorico(false, true);
@@ -198,8 +172,6 @@ function reiniciarJogo() {
     atualizarPlacar();
     mostrarMensagem("Jogo reiniciado. Pressione Iniciar para jogar novamente.");
 }
-
-// Recorde e histórico (armazenados no navegador)
 
 function carregarRecorde() {
     const salvo = localStorage.getItem(CHAVE_RECORDE);
@@ -219,7 +191,6 @@ function lerHistorico() {
     return dados === null ? [] : JSON.parse(dados);
 }
 
-// Guarda o resultado da partida encerrada.
 function registrarHistorico(venceu, abandonada) {
     const lista = lerHistorico();
     lista.unshift({
@@ -233,7 +204,6 @@ function registrarHistorico(venceu, abandonada) {
     exibirHistorico();
 }
 
-// Redesenha a lista de partidas anteriores.
 function exibirHistorico() {
     const lista = lerHistorico();
     elListaHistorico.innerHTML = "";
@@ -273,7 +243,6 @@ function limparHistorico() {
     mostrarMensagem("Histórico apagado.");
 }
 
-// Eventos
 botoesCor.forEach(function (botao) {
     botao.addEventListener("click", function () {
         jogar(Number(botao.dataset.cor));
@@ -284,7 +253,6 @@ btnIniciar.addEventListener("click", iniciarPartida);
 btnReiniciar.addEventListener("click", reiniciarJogo);
 btnLimpar.addEventListener("click", limparHistorico);
 
-// Atalho de teclado: teclas 1 a 4 acionam as cores.
 document.addEventListener("keydown", function (evento) {
     const tecla = Number(evento.key);
     if (tecla >= 1 && tecla <= TOTAL_CORES) {
@@ -292,7 +260,6 @@ document.addEventListener("keydown", function (evento) {
     }
 });
 
-// Inicialização
 carregarRecorde();
 exibirHistorico();
 atualizarPlacar();
